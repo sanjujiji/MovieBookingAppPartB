@@ -8,7 +8,7 @@ import './Home.css';
 export default function TopPortion(props){
     return(
         <div className = "imageList">
-        <ImageList sx={{mt:0 , height:250 , width : "100vw"}} variant="quilted" cols = {6} rows = {1} rowHeight={250} className="imageList" >
+        <ImageList sx={{mt:0 , height:250 , width : "100vw"}} variant="quilted" cols = {6} rows = {1} rowHeight={250}  className="imageList" >
             {
                 props.moviesData.map((item,index) => {
                     if (index < 6 ) {

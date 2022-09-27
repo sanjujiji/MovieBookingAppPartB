@@ -1,5 +1,10 @@
+html,body {
+    width : 100;
+
+}
+
 #header2{
-    width:100%;
+    width:100;
     background-color: #ff9999;
     padding : 8px;
     text-align: center;
@@ -26,6 +31,7 @@
     float:left;
     display:block;
     width: 24%;
+    
     
 }
 

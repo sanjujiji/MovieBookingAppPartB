@@ -1,4 +1,4 @@
-import React , {useState,useEffect }from 'react';
+import React from 'react';
 import './Details.css';
 import Header from '../../common/header/Header';
 import moviesData from '../../common/moviesData.js';
@@ -6,8 +6,7 @@ import LeftDetails from '../details/LeftDetails';
 import MiddlePartDetails from '../details/MiddlePartDetails';
 import RightDetails from '../details/RightDetails';
 import {useParams , useLocation} from 'react-router-dom';
-import { BrowserRouter as Router } from "react-router-dom";
-import { Switch, Route, Routes } from "react-router-dom";
+
 
 
 function Details(){
@@ -18,8 +17,6 @@ function Details(){
     let movieDetail;
     movieDetail = moviesData.filter(function(movie){
         return(movie.id === params.id)
-
-   
 })
     return(
         <div>

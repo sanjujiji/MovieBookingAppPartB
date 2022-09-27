@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component,useState} from 'react';
+import {useState} from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import { MenuItem } from '@mui/material';
@@ -10,7 +10,6 @@ import Checkbox from '@mui/material/Checkbox';
 import genres from '../../common/genres';
 import artists from '../../common/artists';
 import moviesData from '../../common/moviesData';
-
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -19,9 +18,7 @@ import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import LeftPortion from '../home/LeftPortion';
-
 import Card from '@mui/material/Card';
-
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
@@ -49,6 +46,17 @@ let theme = createTheme({
   maxWidth : 240
 });
 
+theme = createTheme(theme,{
+  typography: {
+    body1 : {
+      color: theme.palette.primary.light,
+      margin : theme.spacing(2),
+    }
+  },
+  minWidth : 240,
+  maxWidth : 240
+});
+
 
 let theme1 = createTheme({
   palette: {
@@ -65,10 +73,11 @@ let theme1 = createTheme({
 theme1 = createTheme(theme1,{
     typography: {
       body1 : {
-        color: theme1.palette.primary.light
+        color: theme1.palette.primary.light,
+        margin : theme1.spacing(1),
       }
     },
-    spacing : 8,
+    
     minWidth : 240,
     maxWidth : 240
   });
@@ -188,9 +197,6 @@ function BottomPortion(){
           typeof value === 'string' ? value.split(',') : value,
           );
       };
-
-
-
   return (
     <div>
       <div>
@@ -199,15 +205,21 @@ function BottomPortion(){
       <div  className="right">
         <br></br>
         <br></br>
-        <Card variant="outlined" sx={{ width: 300, marginLeft : "64px" }}>{card}  
+        <Card variant="outlined" sx={{ width: 300, height : 550 , marginLeft : "64px" }}>{card}  
           <ThemeProvider theme={theme}>
-          
-          <FormControl sx={{ml:3, m:2, width : 250 }}>
-            <TextField id="movie-name" label="Movie Name" />
-          </FormControl>
-          
-          <FormControl sx={{ml: 1, mr:2, mt:2, width : 250 }}>
+            <Typography variant="body1" gutterBottom>
+              <FormControl sx={{ width : 250 }} >
+                <TextField id="movie-name" label="Movie Name" />
+            </FormControl>
+            </Typography> 
+            </ThemeProvider>
+            
+          <FormControl sx={{width : 250 }}>
+          <ThemeProvider theme={theme}>
+          <Typography variant="body1" gutterBottom>
               <InputLabel id="multiple-checkbox-label-genre">Genres</InputLabel>
+              </Typography> 
+              </ThemeProvider>
                    <Select 
                       labelId="genre-multiple-checkbox-label"
                       id="genre-multiple-checkbox"
@@ -227,8 +239,12 @@ function BottomPortion(){
                   </Select>
           </FormControl>
 
-          <FormControl sx={{ ml: 1, mr:2, mt:2, mb: 1, width: 250 }}>
+          <FormControl sx={{width: 250 }}>
+          <ThemeProvider theme={theme}>
+          <Typography variant="body1" gutterBottom>
               <InputLabel id="artist-multiple-checkbox-label">Artists</InputLabel>
+              </Typography>
+              </ThemeProvider>
               <Select
                       labelId="artist-multiple-checkbox-label"
                       id="artist-multiple-checkbox"
@@ -247,8 +263,9 @@ function BottomPortion(){
                      ))}
               </Select>
           </FormControl>
-
-          <FormControl sx={{ ml: 3, mr:2, mb:2, width: 250 ,color: 'black'}}>
+            <ThemeProvider theme={theme}>
+          <Typography variant="body1" gutterBottom>
+          <FormControl sx={{ width: 250 ,color: 'black'}}>
               <br></br>
               <br></br>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -264,8 +281,11 @@ function BottomPortion(){
                   inputProps={{...params.inputProps,placeholder: "dd-MM-yyyy"}} />} />
               </LocalizationProvider>
           </FormControl>
-          
-          <FormControl sx={{ ml: 3, mr:2, mt:2,mb:2, width: 250 }}>
+          </Typography>
+          </ThemeProvider>
+          <ThemeProvider theme={theme}>
+          <Typography variant="body1" gutterBottom>
+          <FormControl sx={{width: 250 }}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                     id="releaseEndId"
@@ -279,13 +299,20 @@ function BottomPortion(){
                     inputProps={{...params.inputProps,placeholder: "dd-MM-yyyy"}} />} />  
                 </LocalizationProvider>
           </FormControl>
+          </Typography>
+          </ThemeProvider>
         
-        <FormControl sx={{ ml:3, mt:2, mb:2, mr:2, width: 250 }}> 
+          <ThemeProvider theme={theme}>
+          <Typography variant="body1" gutterBottom>
+        <FormControl sx={{ width: 250 }}> 
             <CardActions>
                 <Button size="large" variant="contained" id="applyButton" onClick = {showMovie}>APPLY</Button>
             </CardActions>
         </FormControl>
-      </ThemeProvider>
+        </Typography>
+        </ThemeProvider>
+       
+     
       </Card>
     </div>
     </div>

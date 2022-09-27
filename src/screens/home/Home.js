@@ -6,12 +6,7 @@ import moviesData from '../../common/moviesData';
 import {BottomPortion} from '../../screens/home/MovieFilter';
 
 
-class Home extends Component{
-   
-    constructor(){
-        super();
-    }
-    render(){   
+function Home(){ 
         return (
             <div>
                <Header loginFlag = {true} bookFlag = { false }/> 
@@ -26,7 +21,7 @@ class Home extends Component{
                 </div>
             </div>
         )
-    }      
+       
 }
 
 export default Home;
