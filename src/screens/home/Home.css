@@ -1,0 +1,50 @@
+#header2{
+    width:100%;
+    background-color: #ff9999;
+    padding : 8px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.imageList{
+    /* height : 250px; */
+    overflow-x: visible;
+    overflow-y : hidden;
+    
+}
+
+
+.left{
+    float:left;
+    display:block;
+    width:76%;
+   
+}
+
+
+.right{
+    float:left;
+    display:block;
+    width: 24%;
+    
+}
+
+.flex-container{
+    display:flex;
+    width : 100%;
+    flex-direction: row;
+}
+
+.image:hover{
+    cursor : pointer;
+}
+
+fieldset{
+    border: none !important;
+    outline: none !important;
+}
+
+#applyButton{
+    width : 25em;
+    font-weight: bolder;
+}
