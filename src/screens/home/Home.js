@@ -9,7 +9,8 @@ import {BottomPortion} from '../../screens/home/MovieFilter';
 function Home(){ 
         return (
             <div>
-               <Header loginFlag = {true} bookFlag = { false }/> 
+               {/* <Header loginFlag = {true} bookFlag = { false }/>  */}
+               <Header />
                 <div id="header2">
                     <span >Upcoming Movies</span>
                 </div>

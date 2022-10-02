@@ -15,6 +15,7 @@ html,body {
     /* height : 250px; */
     overflow-x: visible;
     overflow-y : hidden;
+    object-fit: cover;
     
 }
 
@@ -53,4 +54,15 @@ fieldset{
 #applyButton{
     width : 25em;
     font-weight: bolder;
+}
+
+
+
+.loginBtn{
+    text-align: center;
+}
+
+img{
+    height:250;
+    width:250;
 }

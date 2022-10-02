@@ -6,7 +6,13 @@ import Button from '@mui/material/Button';
 import '../header/Header.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import LoginRegistration from '../../screens/home/LoginRegistration';
+// import { createStore } from "redux";
+import { Link } from 'react-router-dom';
 
+import { useDispatch, useSelector } from "react-redux";
+import { dataActions } from '../dataSlice';
+import { StaticDatePicker } from '@mui/x-date-pickers';
 
 
 const theme = createTheme({
@@ -22,16 +28,43 @@ const theme = createTheme({
     },
   });
 
-function Header(props){
-  const[login,setLogin] = useState(true);
-  const[logout,setLogout] = useState(false);
-  const[bookNow,setBookNow] = useState(false);
-
-  useEffect(() => {
-    setBookNow(props.bookFlag);
-    setLogin(props.loginFlag);
-  },[])
   
+ 
+
+  function Header(props){
+    const[login,setLogin] = useState();
+    const[logout,setLogout] = useState();
+    const[bookNow,setBookNow] = useState();
+    const[loginClickedNew,setLoginClickedNew] = useState();
+
+    const dispatch = useDispatch();
+    const selector = useSelector(state => state.dataSliceReducer);
+
+    useEffect(() => {
+      setLoginClickedNew(selector.loginClicked);
+    },[selector.loginClicked])
+
+    useEffect(() => {
+      setLogin(selector.loginShow);
+      setLogout(selector.logoutShow);
+      setBookNow(selector.bookShow);
+    },[selector.loginShow,selector.logoutShow,selector.bookShow]);
+    
+  const openLoginPage = () => { 
+    dispatch(dataActions.LOGIN(true));
+    setLoginClickedNew(selector.loginClicked);
+  }
+
+  const showLoginButton = () => {
+    dispatch(dataActions.LOGINSHOW(true));
+    dispatch(dataActions.LOGOUTSHOW(false));
+  }
+
+  const bookShowPage = () => {
+    if(selector.loginShow){
+      openLoginPage();
+    }
+  }
 
         return(
             <div>
@@ -40,15 +73,22 @@ function Header(props){
                         <div className = "btn">
                         <Stack spacing={4} direction="row">
                                 {bookNow ?
-                                <Button variant = "contained" color = "primary" >Book Show</Button>
+                                <Button variant = "contained" color = "primary" onClick={bookShowPage}>Book Show</Button>
                                 : null};
                                 {login ?
-                                <Button variant = "contained" className="btnDisplay">Login</Button>
+                                <Button variant = "contained" className="btnDisplay" onClick={() => openLoginPage()}>Login</Button>
                                 : null};
                                 {logout ?
-                                <Button variant = "contained" className="btnDisplay">Logout</Button>
+                                <Button variant = "contained" className="btnDisplay" onClick={() => showLoginButton()}>Logout</Button>
                                 : null};
                         </Stack>   
+                        <br></br>
+                        <br></br>
+                        
+                        <br></br>
+                        <br></br>
+
+                              {loginClickedNew && <LoginRegistration />}
                         </div>     
                 </div>
             </div>
@@ -56,5 +96,8 @@ function Header(props){
 
     }
 
+    export default Header;
 
-export default Header;
+    
+    
+    

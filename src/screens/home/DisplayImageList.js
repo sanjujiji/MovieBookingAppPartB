@@ -16,8 +16,9 @@ function  DisplayImageList(props){
         {
             props.moviesData.map((item) => {
                 return(
-                <div>
-                <Link to={`/Details/${item.id}`} state={{ book : true }}>    
+                <div key = {item.id}>
+                {/* <Link to={`/Details/${item.id}`} state={{ book : true }}>     */}
+                <Link to={`/Details/${item.id}`} >
                 <ImageListItem key = {item.id} sx={{height: 350 , margin : 4}}  >
                     <img
                         src={`${item.poster_url}?w=164&h=164&fit=crop&auto=format`}
